@@ -1,0 +1,24 @@
+{
+  "name": "com.bureus.alarmdotcom",
+  "version": "1.0.0",
+  "description": "Unofficial Alarm.com integration for Homey",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx homey app run",
+    "build": "npx homey app build",
+    "deploy": "npx homey app deploy",
+    "install-app": "npx homey app deploy"
+  },
+  "author": "bureus",
+  "license": "MIT",
+  "dependencies": {
+    "node-alarm-dot-com": "^2.1.1",
+    "sharp": "^0.34.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "devDependencies": {
+    "homey": "^3.8.4"
+  }
+}

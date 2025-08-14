@@ -1,0 +1,47 @@
+.alarm-status {
+  display: flex;
+  padding: 1rem;
+  background: var(--background);
+  border-radius: 8px;
+}
+
+.status-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 1rem;
+}
+
+.status-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.status-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.state {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.timestamp {
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+[data-state="armed_away"] {
+  color: var(--error);
+}
+
+[data-state="armed_stay"] {
+  color: var(--warning);
+}
+
+[data-state="disarmed"] {
+  color: var(--success);
+}

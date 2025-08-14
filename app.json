@@ -1,0 +1,175 @@
+{
+  "id": "com.bureus.alarmdotcom",
+  "name": { "en": "Alarm.com" },
+  "sdk": 3,
+  "version": "1.0.0",
+  "compatibility": ">=12.1.2",
+  "brandColor": "#ff6600",
+  "category": ["security"],
+  "author": { "name": "Bure Råman Vinnå", "email": "buredroid@gmail.com" },
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small-app.png",
+    "large": "/assets/images/large-app.png"
+  },
+  "capabilities": {
+    "arm_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Arm Mode"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "disarmed",
+          "title": { "en": "Disarmed" }
+        },
+        {
+          "id": "armed_away",
+          "title": { "en": "Armed Away" }
+        },
+        {
+          "id": "armed_stay",
+          "title": { "en": "Armed Stay" }
+        },
+        {
+          "id": "armed_night",
+          "title": { "en": "Armed Night" }
+        }
+      ]
+    }
+  },
+  "drivers": [
+    {
+      "id": "alarmdotcom-panel",
+      "name": { "en": "Alarm system" },
+      "class": "sensor",
+      "icon": "/assets/images/alarm-com-logo.svg",
+      "images": {
+        "small": "/drivers/alarmdotcom-panel/assets/images/small.png",
+        "large": "/drivers/alarmdotcom-panel/assets/images/large.png"
+      },
+      "capabilities": [
+        "onoff",
+        "homealarm_state",
+        "arm_mode"
+      ],
+      "pair": [
+        {
+          "id": "login_credentials",
+          "template": "login_credentials",
+          "options": {
+            "logo": "../../../assets/images/alarm-com-logo.svg",
+            "title": {
+              "en": "Login with your credentials"
+            },
+            "usernameLabel": { "en": "Username" },
+            "usernamePlaceholder": { "en": "john@doe.com" },
+            "passwordLabel": { "en": "Password" },
+            "passwordPlaceholder": { "en": "Password" }
+          }
+        },
+        {
+          "id": "list",
+          "template": "list_devices",
+          "title": { "en": "Select a device", "sv": "Välj enhet" },
+          "navigation": { "next": "add_devices" },
+          "options": {
+            "singular": true,
+            "icon": "icons/panel.svg"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices",
+          "options": {
+            "icon": "icons/panel.svg"
+          }
+        }
+      ],
+      "settings": [
+        { "id": "username", "type": "text", "label": { "en": "Username" } },
+        { "id": "password", "type": "password", "label": { "en": "Password" } },
+        {
+          "id": "provider",
+          "type": "text",
+          "label": { "en": "Provider (optional)" }
+        },
+        {
+          "id": "poll_interval",
+          "type": "number",
+          "label": { "en": "Poll interval (seconds)" },
+          "value": 60,
+          "min": 15,
+          "max": 300,
+          "step": 15
+        },
+        {
+          "id": "default_pin",
+          "type": "password",
+          "label": {
+            "en": "Default PIN (optional, used by dashboard controls)"
+          }
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "state_changed",
+        "title": {
+          "en": "System state changed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=alarmdotcom-panel"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "state",
+            "type": "string",
+            "title": {
+              "en": "State"
+            },
+            "example": "armed_away"
+          },
+          {
+            "name": "previous_state",
+            "type": "string",
+            "title": {
+              "en": "Previous State"
+            },
+            "example": "disarmed"
+          },
+          {
+            "name": "raw_state",
+            "type": "number",
+            "title": {
+              "en": "Raw State"
+            },
+            "example": 3
+          }
+        ]
+      }
+    ]
+  },
+  "insights": [
+    {
+      "id": "alarm_state_changes",
+      "type": "log",
+      "title": {
+        "en": "Alarm State Changes"
+      },
+      "units": {
+        "en": "Changes"
+      },
+      "decimals": 0
+    }
+  ]
+}
