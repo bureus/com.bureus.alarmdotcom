@@ -1,0 +1,29 @@
+{
+  "id": "com.bureus.alarmdotcom",
+  "version": "1.0.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "platforms": [
+    "local",
+    "cloud"
+  ],
+  "name": {
+    "en": "Alarm.com"
+  },
+  "description": {
+    "en": "Integrate with Alarm.com panels and devices, to controll your home alarm system."
+  },
+  "category": [
+    "security"
+  ],
+  "permissions": [],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Bure Råman Vinnå",
+    "email": "bure.raman.vinna@gmail.com"
+  }
+}
